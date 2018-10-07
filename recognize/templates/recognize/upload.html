@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传文件</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'recognize/css/main.css' %}">
+</head>
+<body>
+<div class="flex-container">
+
+    <form name="form" action="{% url 'recognize:upload' %}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+        <div class="flex-item">
+            <label for="title">标题:</label>
+            <input type="text" name="title" id="title"/>
+        </div>
+        <div class="flex-item">
+            <label for="file">上传文件:</label>
+            <input type="file" name="file" id="file"/>
+        </div>
+        <div class="line"></div>
+        <div class="flex-item">
+            <div class="black">
+                <input type="submit" name="submit" value="提交"/>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>

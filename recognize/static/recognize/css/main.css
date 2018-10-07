@@ -1,0 +1,36 @@
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+.flex-item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.flex-item label {
+    display: block;
+    width: 128px;
+    height: 40px;
+    font-size: 20px;
+}
+
+.flex-item input {
+    font-size: 15px;
+}
+
+.flex-item .black {
+    width: 100%;
+    height: 200px;
+}
+
+.line {
+    background: #d5d5d5;
+    width: 100%;
+    height: 1px;
+    margin-bottom: 20px;
+}
