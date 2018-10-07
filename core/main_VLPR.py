@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-__author__ = '樱花落舞'
 import tkinter as tk
 from tkinter.filedialog import *
 from tkinter import ttk
@@ -9,9 +8,9 @@ from PIL import Image, ImageTk
 import threading
 import time
 from core import img_math
-import traceback
-from core import debug,config
+from core import debug, config
 from threading import Thread
+
 
 class ThreadWithReturnValue(Thread):
     def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, *, daemon=None):
@@ -19,15 +18,14 @@ class ThreadWithReturnValue(Thread):
         self._return1 = None
         self._return2 = None
         self._return3 = None
+
     def run(self):
         if self._target is not None:
-            self._return1,self._return2,self._return3 = self._target(*self._args, **self._kwargs)
+            self._return1, self._return2, self._return3 = self._target(*self._args, **self._kwargs)
+
     def join(self):
         Thread.join(self)
-        return self._return1,self._return2,self._return3
-
-
-
+        return self._return1, self._return2, self._return3
 
 
 class Surface(ttk.Frame):
@@ -56,14 +54,14 @@ class Surface(ttk.Frame):
 
         from_pic_ctl = ttk.Button(frame_right2, text="来自图片", width=20, command=self.from_pic)
         from_vedio_ctl = ttk.Button(frame_right2, text="来自摄像头", width=20, command=self.from_vedio)
-        from_img_pre = ttk.Button(frame_right2, text="查看形状预处理图像", width=20,command = self.show_img_pre)
+        from_img_pre = ttk.Button(frame_right2, text="查看形状预处理图像", width=20, command=self.show_img_pre)
         self.image_ctl = ttk.Label(frame_left)
         self.image_ctl.pack(anchor="nw")
 
         self.roi_ctl = ttk.Label(frame_right1)
         self.roi_ctl.grid(column=0, row=1, sticky=tk.W)
         ttk.Label(frame_right1, text='形状定位识别结果：').grid(column=0, row=2, sticky=tk.W)
-        self.r_ctl = ttk.Label(frame_right1, text="",font=('Times','20'))
+        self.r_ctl = ttk.Label(frame_right1, text="", font=('Times', '20'))
         self.r_ctl.grid(column=0, row=3, sticky=tk.W)
         self.color_ctl = ttk.Label(frame_right1, text="", width="20")
         self.color_ctl.grid(column=0, row=4, sticky=tk.W)
@@ -75,7 +73,7 @@ class Surface(ttk.Frame):
         self.roi_ct2 = ttk.Label(frame_right1)
         self.roi_ct2.grid(column=0, row=6, sticky=tk.W)
         ttk.Label(frame_right1, text='颜色定位识别结果：').grid(column=0, row=7, sticky=tk.W)
-        self.r_ct2 = ttk.Label(frame_right1, text="",font=('Times','20'))
+        self.r_ct2 = ttk.Label(frame_right1, text="", font=('Times', '20'))
         self.r_ct2.grid(column=0, row=8, sticky=tk.W)
         self.color_ct2 = ttk.Label(frame_right1, text="", width="20")
         self.color_ct2.grid(column=0, row=9, sticky=tk.W)
@@ -100,8 +98,6 @@ class Surface(ttk.Frame):
             im = im.resize((wide, high), Image.ANTIALIAS)
             imgtk = ImageTk.PhotoImage(image=im)
         return imgtk
-
-
 
     def show_roi1(self, r, roi, color):
         if r:
@@ -146,7 +142,6 @@ class Surface(ttk.Frame):
         if filename.any() == True:
             debug.img_show(filename)
 
-
     def from_vedio(self):
         if self.thread_run:
             return
@@ -181,7 +176,6 @@ class Surface(ttk.Frame):
             self.show_roi2(r_color, roi_color, color_color)
 
             self.show_roi1(r_c, roi_c, color_c)
-
 
     @staticmethod
     def vedio_thread(self):
