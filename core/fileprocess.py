@@ -3,12 +3,19 @@ from core import img_math
 from core import img_function as predict
 import cv2
 from PIL import Image, ImageTk
+import time
+
+
+def get_millis():
+    millis = int(round(time.time() * 1000))
+    return millis
 
 
 def handle_uploaded_file(f):
     settings_dir = os.path.dirname(__file__)
     PROJECT_ROOT = os.path.abspath(os.path.dirname(settings_dir))
-    IMGFILES_FOLDER = os.path.join(PROJECT_ROOT, 'file/a.jpg')
+    CURRENT_IMAGE = "file/%s.jpg" % (get_millis())
+    IMGFILES_FOLDER = os.path.join(PROJECT_ROOT, CURRENT_IMAGE)
 
     with open(IMGFILES_FOLDER, 'wb+') as destination:
         for chunk in f.chunks():
